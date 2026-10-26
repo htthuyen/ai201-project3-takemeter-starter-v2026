@@ -43,7 +43,7 @@
      sentences. -->
 
 
-
+This dataset contains 200 synthetic, Reddit-style posts about U.S. college football. The classifier categorizes posts into three labels: **tactical_analysis** for discussions of plays and strategies, **program_outlook** for predictions about teams' future performance, and **game_reaction** for immediate emotional responses to game events.
 ---
 
 ## Label Taxonomy
@@ -54,34 +54,45 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `tactical_analysis`
 
-**Definition:**
+**Definition:** Explains plays, schemes, or player decisions
 
-**Example 1:**
+**Example 1:** The punt coverage unit kept sprinting past its lanes. The returner barely needed a move because both contain players had collapsed toward the middle. Lane discipline matters more than raw speed there.
 >
 
-**Example 2:**
+**Example 2:** The wide receivers are blocking well enough to make the perimeter run game work. One clean seal from the slot turns a four-yard swing pass into a chance for a big gain.
 >
 
-### `label_two`
+### `program_outlook`
 
-**Definition:**
+**Definition:** Evaluates a team's future prospects
 
-**Example 1:**
+**Example 1:** I think Penn State's next step is turning close games into wins with reliable red-zone execution. Explosive plays are exciting, but finishing drives matters when defenses are evenly matched.
 >
 
-**Example 2:**
+**Example 2:** Clemson's path back to the top depends on offensive consistency more than a few highlight throws. Sustained drives would take pressure off the defense and change field position over four quarters.
 >
+
+### `game_reaction`
+
+**Definition:** Expresses an immediate response to an event
+
+**Example 1:** I cannot believe the returner fielded that punt at the two-yard line. Everyone in the stadium knew to let it bounce, and now the offense is stuck in its own end zone.
+>
+
+**Example 2:** I had completely written off this drive after second-and-forever. Two plays later they're inside the ten and now I'm standing in front of the TV again.
+>
+
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** game_reaction and tactical_analysis
 
 **The decision rule I used every time:**
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
-
+ If a post explains how or why a play happened using specific football details, classify it as tactical_analysis, even if it contains an emotional reaction. If it mainly expresses excitement, frustration, or surprise without explaining the play, classify it as game_reaction.
 
 
 ---
@@ -91,7 +102,7 @@
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** The dataset contains synthetic data, generated using Chat-GPT.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
@@ -100,11 +111,11 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| tactical_analysis | 68 | 34% |
+| program_outlook | 66 | 33% |
+|  game_reaction| 66 | 33% |
 | **Total** |  | 100% |
-
+  
 **Three hard cases**
 
 <!-- Any post that made you pause: what it was, which two labels it could have
@@ -137,15 +148,24 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** "distilbert-base-uncased"
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** seed 42, 3 epochs, lr 2e-05, batch 16
+<!-- epochs, learning rate, batch size, seed --> 
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** N/A
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
 of next unit's variance. -->
+
+train 139  ·  val 31  ·  test 30
+
+label|train|  val|  test
+|---|---|---|---|                    
+tactical_analysis    | 47  | 11  |  10|
+program_outlook       |46  | 10   | 10|
+game_reaction         |46 |  10  | 10|
 
 
 
