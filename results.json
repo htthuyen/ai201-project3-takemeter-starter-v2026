@@ -1,0 +1,54 @@
+{
+  "seed": 42,
+  "n_test": 30,
+  "accuracy": 0.9333333333333333,
+  "f1_macro": 0.9333333333333332,
+  "per_label": {
+    "tactical_analysis": {
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "support": 10
+    },
+    "program_outlook": {
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "support": 10
+    },
+    "game_reaction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 10
+    }
+  },
+  "confusion": {
+    "tactical_analysis": {
+      "tactical_analysis": 9,
+      "program_outlook": 1,
+      "game_reaction": 0
+    },
+    "program_outlook": {
+      "tactical_analysis": 1,
+      "program_outlook": 9,
+      "game_reaction": 0
+    },
+    "game_reaction": {
+      "tactical_analysis": 0,
+      "program_outlook": 0,
+      "game_reaction": 10
+    }
+  },
+  "confidence": {
+    "mean_when_right": 0.4904080927371979,
+    "mean_when_wrong": 0.42035675048828125,
+    "accuracy_most_confident_third": 1.0,
+    "accuracy_least_confident_third": 0.8,
+    "n_per_third": 10
+  },
+  "device": "mps",
+  "device_name": "Apple Silicon GPU (MPS)",
+  "torch_version": "2.14.1",
+  "max_length": 128
+}
